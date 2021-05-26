@@ -14,7 +14,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/myapp", {
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function () {
-  // we're connected!
+  console.log("db connection sucessfull");
 });
 
 app.set("view engine", "ejs");
@@ -43,9 +43,15 @@ app.get("/:shortUrl", async (req, res) => {
   const shortUrl = await ShortUrl.findOne({ short: req.params.shortUrl });
   if (shortUrl == null) return res.sendStatus(404);
 
-  shortUrl.clicks++;
-  shortUrl.save();
-
+  console.log(
+    req.protocol +
+      "://" +
+      req.headers.host +
+      "/" +
+      shortened +
+      "  redirected to it's original adress  " +
+      shortUrl.full
+  );
   res.redirect(shortUrl.full);
 });
 
