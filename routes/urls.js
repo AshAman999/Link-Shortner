@@ -1,21 +1,23 @@
-import express from "express";
-import { nanoid } from "nanoid";
-import Url from "../models/Url.js";
-import { validateUrl } from "../utils/utils.js";
 import dotenv from "dotenv";
-dotenv.config({ path: "../config/.env" });
+import express from "express";
+import {nanoid} from "nanoid";
+
+import Url from "../models/Url.js";
+import {validateUrl} from "../utils/utils.js";
+
+dotenv.config({path : "../config/.env"});
 
 const router = express.Router();
 
 // Short URL Generator
 router.post("/shorten", async (req, res) => {
-  const { originalUrl } = req.body;
+  const {originalUrl} = req.body;
   const baseUrl = process.env.BASE;
 
   const urlId = nanoid();
   if (validateUrl(originalUrl)) {
     try {
-      let url = await Url.findOne({ originalUrl });
+      let url = await Url.findOne({originalUrl});
       if (url) {
         res.json(url);
       } else {
@@ -25,8 +27,8 @@ router.post("/shorten", async (req, res) => {
           originalUrl,
           shortUrl,
           urlId,
-          clickHistory: [], // Initialize clickHistory as an empty array
-          createdAt: new Date(),
+          clickHistory : [], // Initialize clickHistory as an empty array
+          createdAt : new Date(),
         });
 
         await url.save();

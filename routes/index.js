@@ -1,18 +1,18 @@
 import express from "express";
+
 import Url from "../models/Url.js";
+
 const router = express.Router();
 
-router.post("/check", (req, res) => {
-  res.send(req.body);
-});
+router.post("/check", (req, res) => { res.send(req.body); });
 
 router.get("/:urlId", async (req, res) => {
   try {
-    const url = await Url.findOne({ urlId: req.params.urlId });
+    const url = await Url.findOne({urlId : req.params.urlId});
     if (url) {
       // Add the click timestamp to the clickHistory array
       const clickTimestamp = new Date();
-      url.clicks.push({ timestamp: clickTimestamp });
+      url.clicks.push({timestamp : clickTimestamp});
 
       // Increment the totalClicks count
       url.totalClicks += 1;
