@@ -1,22 +1,22 @@
 {
-  "name": "url-shortner",
+  "name": "link-shortner",
   "version": "1.0.0",
-  "description": "a simple url shortner",
-  "main": "index.js",
+  "description": "yet another link shortner",
+  "main": "app.js",
   "scripts": {
-    "devstart": "nodemon server.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "author": "aman",
   "license": "ISC",
   "dependencies": {
-    "async": "^0.9.2",
-    "body-parser": "^1.19.0",
-    "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "mongoose": "^5.12.10",
-    "shortid": "^2.2.16"
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.5.4",
+    "nanoid": "^5.0.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
-  }
+    "nodemon": "^3.0.1"
+  },
+  "type": "module"
 }
