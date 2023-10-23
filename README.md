@@ -75,7 +75,7 @@ Before you begin, ensure you have met the following requirements:
 
 ### Shorten a URL
 
-- Endpoint: /shorten
+- Endpoint: /api/shorten
 
 - Method: POST
 
@@ -84,12 +84,17 @@ Before you begin, ensure you have met the following requirements:
 Example:
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d '{"origUrl":"https://www.example.com"}' http://localhost:3000/shorten
+curl -X POST http://localhost:4000/api/shorten -H "Content-Type: application/json" -d "{\"originalUrl\": \"https://google.com/\"}"
 ```
 
 ### Redirect to Original URL
 
 - Endpoint: /:urlId
+- Method: GET
+
+### Get the Click Counts and History
+
+- Endpoint: /stats/:urlId
 - Method: GET
 
 ### More features and endpoints to be added

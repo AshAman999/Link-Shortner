@@ -29,4 +29,27 @@ router.get("/:urlId", async (req, res) => {
   }
 });
 
+router.get("/stats/:urlId", async (req, res) => {
+  try {
+    const url = await Url.findOne({ urlId: req.params.urlId });
+    if (url) {
+      // Get the totalClicks count
+      const totalClicks = url.totalClicks;
+
+      // Get the click history with timestamps
+      const clickHistory = url.clicks;
+
+      return res.json({
+        totalClicks: totalClicks,
+        clickHistory: clickHistory,
+      });
+    } else {
+      return res.status(404).json("URL not found");
+    }
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json("Server Error");
+  }
+});
+
 export default router;

@@ -10,7 +10,7 @@ const router = express.Router();
 // Short URL Generator
 router.post("/shorten", async (req, res) => {
   const { originalUrl } = req.body;
-  const baseUrl = process.env.BASE;
+  const baseUrl = process.env.BASE_URL;
 
   const urlId = nanoid();
   if (validateUrl(originalUrl)) {
